@@ -6,38 +6,65 @@
   <title>My Itinerary</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Lato&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style/main.css" />
-  <script src="js/itinerary.js"></script>
+  <script src="script/itinerary.js"></script>
+  <script src="script/main.js"></script>
 </head>
 <body>
-
   <header>
-    <img src="images/logo.png" alt="Logo" width="50" />
-    <h1>Travel Planner & Local Experience Finder</h1>
+    <div class="logo-container">
+      <img src="images/logo.png" alt="Logo" width="50" />
+      <h1>Travel Planner & Local Experience Finder</h1>
+    </div>
     <nav>
       <a href="index.html">Home</a>
       <a href="search.html">Plan a Trip</a>
-      <a href="itinerary.html">My Itinerary</a>
+      <a href="itinerary.html" class="active">My Itinerary</a>
       <a href="map.html">Map</a>
-      <a href="profile.html">Profile</a>
-      <a href="auth.html">Login</a>
+      <a href="profile.html" id="profile-link">Profile</a>
+      <a href="auth.html" id="auth-link">Login</a>
+      <a href="#" id="logout-link">Logout</a>
     </nav>
   </header>
 
   <main>
-    <section class="hero">
-      <h2>Build Your Itinerary</h2>
-      <p>Drag and drop activities into your daily schedule below.</p>
-    </section>
-
-    <section>
-      <h3>Daily Schedule</h3>
-      <p>This is where you can organize your trip day-by-day.</p>
-    </section>
+<!-- Add inside main section -->
+<section class="itinerary-container">
+    <div class="activities-panel">
+        <h3>Available Activities</h3>
+        <div class="activity-card" draggable="true">
+            <h4>City Tour</h4>
+            <p>3-hour guided tour</p>
+        </div>
+        <div class="activity-card" draggable="true">
+            <h4>Museum Visit</h4>
+            <p>Art and history museum</p>
+        </div>
+        <div class="activity-card" draggable="true">
+            <h4>Beach Relaxation</h4>
+            <p>Free time at the beach</p>
+        </div>
+    </div>
+    
+    <div class="schedule-panel">
+        <div class="day-schedule">
+            <h3>Day 1</h3>
+            <div class="drop-zone">Drop activities here</div>
+        </div>
+        <div class="day-schedule">
+            <h3>Day 2</h3>
+            <div class="drop-zone">Drop activities here</div>
+        </div>
+        <div class="day-schedule">
+            <h3>Day 3</h3>
+            <div class="drop-zone">Drop activities here</div>
+        </div>
+    </div>
+    <button id="save-itinerary" class="btn">Save Itinerary</button>
+</section>
   </main>
 
   <footer>
     <p>&copy; 2025 Travel Planner App | Marcos Murilo Campos</p>
   </footer>
-
 </body>
 </html>

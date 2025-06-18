@@ -1,19 +1,83 @@
-// main.js
+document.addEventListener('DOMContentLoaded', function() {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (!currentUser) {
+        window.location.href = 'auth.html';
+    }
+});
 
-// Global Variables
-const SKYSCANNER_API_KEY = 'YOUR_SKYSCANNER_API_KEY'; // Replace with your actual key
-const TRIPADVISOR_API_KEY = 'YOUR_TRIPADVISOR_API_KEY'; // Replace with your actual key
-const RAPIDAPI_HOST = 'skyscanner50.p.rapidapi.com';
+document.addEventListener('DOMContentLoaded', function() {
+    // Check if user is logged in and update navigation
+    updateNavigation();
+    
+    // Logout functionality
+    const logoutLink = document.getElementById('logout-link');
+    if (logoutLink) {
+        logoutLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            localStorage.removeItem('currentUser');
+            updateNavigation();
+            window.location.href = 'index.html';
+        });
+    }
+    
+    function updateNavigation() {
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        const profileLinks = document.querySelectorAll('#profile-link');
+        const authLinks = document.querySelectorAll('#auth-link');
+        const logoutLinks = document.querySelectorAll('#logout-link');
+        
+        if (currentUser) {
+            profileLinks.forEach(link => link.style.display = 'inline-block');
+            authLinks.forEach(link => link.style.display = 'none');
+            logoutLinks.forEach(link => link.style.display = 'inline-block');
+        } else {
+            profileLinks.forEach(link => link.style.display = 'none');
+            authLinks.forEach(link => link.style.display = 'inline-block');
+            logoutLinks.forEach(link => link.style.display = 'none');
+        }
+    }
+    
+    // Show alert message
+    window.showAlert = function(message, type = 'success') {
+        const alertBox = document.createElement('div');
+        alertBox.className = `alert alert-${type}`;
+        alertBox.textContent = message;
+        document.body.appendChild(alertBox);
 
-// Helper: Format date as YYYY-MM-DD
-function formatDate(date) {
-    const d = new Date(date);
-    let month = '' + (d.getMonth() + 1);
-    let day = '' + d.getDate();
-    const year = d.getFullYear();
+        setTimeout(() => alertBox.remove(), 3000);
+    };
+});
 
-    if (month.length < 2) month = '0' + month;
-    if (day.length < 2) day = '0' + day;
-
-    return [year, month, day].join('-');
-}
+// Add this to main.js
+document.addEventListener('DOMContentLoaded', function() {
+    function updateNavigation() {
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        const profileLinks = document.querySelectorAll('#profile-link');
+        const authLinks = document.querySelectorAll('#auth-link');
+        const logoutLinks = document.querySelectorAll('#logout-link');
+        
+        if (currentUser) {
+            profileLinks.forEach(link => link.style.display = 'inline-block');
+            authLinks.forEach(link => link.style.display = 'none');
+            logoutLinks.forEach(link => link.style.display = 'inline-block');
+        } else {
+            profileLinks.forEach(link => link.style.display = 'none');
+            authLinks.forEach(link => link.style.display = 'inline-block');
+            logoutLinks.forEach(link => link.style.display = 'none');
+        }
+    }
+    
+    // Initialize navigation
+    updateNavigation();
+    
+    // Logout functionality
+    const logoutLinks = document.querySelectorAll('#logout-link');
+    logoutLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            localStorage.removeItem('currentUser');
+            updateNavigation();
+            window.location.href = 'index.html';
+        });
+    });
+});

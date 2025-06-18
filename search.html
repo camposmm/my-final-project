@@ -6,20 +6,23 @@
   <title>Plan a Trip</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Lato&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style/main.css" />
-  <script src="js/search.js"></script>
+  <script src="script/search.js"></script>
+  <script src="script/main.js"></script>
 </head>
 <body>
-
   <header>
-    <img src="images/logo.png" alt="Logo" width="50" />
-    <h1>Travel Planner & Local Experience Finder</h1>
+    <div class="logo-container">
+      <img src="images/logo.png" alt="Logo" width="50" />
+      <h1>Travel Planner & Local Experience Finder</h1>
+    </div>
     <nav>
       <a href="index.html">Home</a>
-      <a href="search.html">Plan a Trip</a>
+      <a href="search.html" class="active">Plan a Trip</a>
       <a href="itinerary.html">My Itinerary</a>
       <a href="map.html">Map</a>
-      <a href="profile.html">Profile</a>
-      <a href="auth.html">Login</a>
+      <a href="profile.html" id="profile-link">Profile</a>
+      <a href="auth.html" id="auth-link">Login</a>
+      <a href="#" id="logout-link">Logout</a>
     </nav>
   </header>
 
@@ -29,41 +32,43 @@
       <p>Enter your travel details below to find the perfect destination.</p>
     </section>
 
+    <section class="form-container">
+      <h2>Where Do You Want to Go?</h2>
+      <form id="search-form">
+        <label>Destination:</label>
+        <input type="text" id="destination" placeholder="City or Country" required />
 
-  <section class="form-container">
-    <h2>Where Do You Want to Go?</h2>
-    <form id="search-form">
-      <label>Destination:</label>
-      <input type="text" id="destination" placeholder="City or Country" required />
+        <label>Budget:</label>
+        <select id="budget">
+          <option value="low">$</option>
+          <option value="medium">$$</option>
+          <option value="high">$$$</option>
+        </select>
 
-      <label>Budget:</label>
-      <select id="budget">
-        <option value="low">$</option>
-        <option value="medium">$$</option>
-        <option value="high">$$$</option>
-      </select>
+        <label>Interest:</label>
+        <select id="interest">
+          <option value="beaches">Beaches</option>
+          <option value="hiking">Hiking</option>
+          <option value="history">History</option>
+          <option value="food">Food</option>
+        </select>
 
-      <label>Interest:</label>
-      <select id="interest">
-        <option value="beaches">Beaches</option>
-        <option value="hiking">Hiking</option>
-        <option value="history">History</option>
-        <option value="food">Food</option>
-      </select>
-
-      <label>Dates:</label>
-      <input type="date" id="start-date" />
-      <input type="date" id="end-date" />
-
-      <button type="submit">Search</button>
-    </form>
-  </section>
-
+        <label>Dates:</label>
+        <input type="date" id="start-date" />
+        <input type="date" id="end-date" />
+        <!-- Add this after the form -->
+      <section id="results" class="results-container">
+        <div id="destination-results"></div>
+        <div id="hotel-results"></div>
+        <div id="flight-results"></div>
+      </section>
+        <button type="submit">Search</button>
+      </form>
+    </section>
   </main>
 
   <footer>
     <p>&copy; 2025 Travel Planner App | Marcos Murilo Campos</p>
   </footer>
-
 </body>
 </html>

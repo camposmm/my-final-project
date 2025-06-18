@@ -1,65 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>User Profile</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Profile - Travel Planner</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Lato&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style/main.css" />
-  <script src="js/profile.js"></script>
+  <link rel="stylesheet" href="style/main.css">
 </head>
 <body>
-
   <header>
-    <img src="images/logo.png" alt="Logo" width="50" />
-    <h1>Travel Planner & Local Experience Finder</h1>
+    <div class="logo-container">
+      <img src="images/logo.png" alt="Logo" width="50">
+      <h1>Travel Planner & Local Experience Finder</h1>
+    </div>
     <nav>
       <a href="index.html">Home</a>
       <a href="search.html">Plan a Trip</a>
       <a href="itinerary.html">My Itinerary</a>
       <a href="map.html">Map</a>
-      <a href="profile.html">Profile</a>
-      <a href="auth.html">Login</a>
+      <a href="profile.html" id="profile-link" class="active">Profile</a>
+      <a href="#" id="logout-link">Logout</a>
     </nav>
   </header>
 
   <main>
     <section class="hero">
-      <h2>Your Travel Preferences</h2>
-      <p>Update your profile settings and saved preferences here.</p>
+      <h2>Welcome Back, <span id="user-name">Traveler</span>!</h2>
+      <p>Manage your profile, preferences, and view your travel history.</p>
     </section>
 
-    
-  <section class="form-container">
-    <h2>Your Travel Preferences</h2>
-    <form id="profile-form">
-      <label>Email:</label>
-      <input type="email" placeholder="you@example.com" disabled />
-
-      <label>Preferred Budget:</label>
-      <select>
-        <option>$</option>
-        <option>$$</option>
-        <option>$$$</option>
-      </select>
-
-      <label>Favorite Interests:</label>
-      <div class="checkbox-group">
-        <label><input type="checkbox" name="interest" value="beaches"> Beaches</label>
-        <label><input type="checkbox" name="interest" value="hiking"> Hiking</label>
-        <label><input type="checkbox" name="interest" value="history"> History</label>
-        <label><input type="checkbox" name="interest" value="food"> Food</label>
+    <div class="profile-container">
+      <div class="profile-sidebar">
+        <div class="user-avatar">
+          <div class="avatar">
+            <span id="user-initial">T</span>
+          </div>
+          <h3 id="user-full-name">Traveler Name</h3>
+          <p id="user-status">Travel Enthusiast</p>
+        </div>
+        
+        <div class="user-details">
+          <div class="detail-item">
+            <span class="detail-label">Member Since:</span>
+            <span id="join-date">-</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Trips Planned:</span>
+            <span id="trip-count">0</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Countries Visited:</span>
+            <span id="country-count">0</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Favorite Destination:</span>
+            <span id="favorite-destination">-</span>
+          </div>
+        </div>
       </div>
-
-      <button type="submit">Save Preferences</button>
-    </form>
-  </section>
-
+      
+      <div class="profile-content">
+        <div id="alert" class="alert" style="display:none;"></div>
+        
+        <div class="form-container">
+          <h2>Your Profile Information</h2>
+          <form id="profile-form">
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="profile-first-name">First Name</label>
+                <input type="text" id="profile-first-name" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="profile-last-name">Last Name</label>
+                <input type="text" id="profile-last-name" required>
+              </div>
+              
+              <div class="form-group full-width">
+                <label for="profile-email">Email Address</label>
+                <input type="email" id="profile-email" required>
+              </div>
+              
+              <div class="form-group full-width">
+                <label>Travel Preferences</label>
+                <div class="checkbox-group">
+                  <div class="checkbox-item">
+                    <input type="checkbox" id="beaches" name="interests" value="beaches">
+                    <label for="beaches">Beaches</label>
+                  </div>
+                  <div class="checkbox-item">
+                    <input type="checkbox" id="hiking" name="interests" value="hiking">
+                    <label for="hiking">Hiking</label>
+                  </div>
+                  <div class="checkbox-item">
+                    <input type="checkbox" id="history" name="interests" value="history">
+                    <label for="history">History</label>
+                  </div>
+                  <div class="checkbox-item">
+                    <input type="checkbox" id="food" name="interests" value="food">
+                    <label for="food">Food & Cuisine</label>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="form-group full-width">
+                <label for="budget">Preferred Budget</label>
+                <select id="budget" required>
+                  <option value="low">Budget ($)</option>
+                  <option value="medium" selected>Moderate ($$)</option>
+                  <option value="high">Luxury ($$$)</option>
+                </select>
+              </div>
+            </div>
+            
+            <button type="submit" class="btn">Update Profile</button>
+          </form>
+        </div>
+        
+        <div class="trips-section">
+          <h3>Recent Trips</h3>
+          <div class="trips-grid" id="trips-container">
+            <div class="trip-card">
+              <div class="trip-image">
+                <span>🇮🇹</span>
+              </div>
+              <div class="trip-content">
+                <h4>Italian Adventure</h4>
+                <p>Rome, Florence, Venice</p>
+                <div class="trip-meta">
+                  <span>May 15-22, 2025</span>
+                  <span>$$$</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="trip-card">
+              <div class="trip-image">
+                <span>🇯🇵</span>
+              </div>
+              <div class="trip-content">
+                <h4>Japan Discovery</h4>
+                <p>Tokyo, Kyoto, Osaka</p>
+                <div class="trip-meta">
+                  <span>Mar 10-20, 2025</span>
+                  <span>$$$</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
 
   <footer>
     <p>&copy; 2025 Travel Planner App | Marcos Murilo Campos</p>
   </footer>
 
+  <script src="script/profile.js"></script>
+  <script src="script/main.js"></script>
 </body>
 </html>
